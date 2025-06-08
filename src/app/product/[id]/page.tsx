@@ -8,19 +8,19 @@ import { addToCart } from '@/redux/features/cartSlice';
 import { useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
 
-interface ProductPageProps {
+type Props = {
   params: {
     id: string;
   };
-}
+};
 
-export default function ProductPage({ params }: ProductPageProps) {
-  const dispatch = useDispatch(); // ✅ call first
+export default function ProductPage({ params }: Props) {
+  const dispatch = useDispatch();
   const product = products.find((p) => p.id === params.id);
 
   if (!product) {
-    notFound(); // ❗ call this AFTER hooks
-    return null; // fallback return (optional for type safety)
+    notFound();
+    return null;
   }
 
   const handleAddToCart = () => {
