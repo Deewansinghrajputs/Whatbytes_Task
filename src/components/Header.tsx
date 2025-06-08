@@ -17,19 +17,20 @@ const Header = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const totalCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
-  useEffect(() => {
-    const delayDebounce = setTimeout(() => {
-      const params = new URLSearchParams(Array.from(searchParams.entries()));
-      if (query) {
-        params.set('search', query);
-      } else {
-        params.delete('search');
-      }
-      router.replace(`/?${params.toString()}`);
-    }, 400);
+useEffect(() => {
+  const delayDebounce = setTimeout(() => {
+    const params = new URLSearchParams(Array.from(searchParams.entries()));
+    if (query) {
+      params.set('search', query);
+    } else {
+      params.delete('search');
+    }
+    router.replace(`/?${params.toString()}`);
+  }, 400);
 
-    return () => clearTimeout(delayDebounce);
-  }, [query]);
+  return () => clearTimeout(delayDebounce);
+}, [query, router, searchParams]); 
+
 
   return (
     <header className="bg-blue-800 text-white px-4 py-3 shadow-md sticky top-0 z-50">

@@ -19,7 +19,10 @@ export default function ProductPage({ params }: ProductPageProps) {
 
   if (!product) return notFound();
 
-  const dispatch = useDispatch();
+ const dispatch = useDispatch();
+if (something) {
+  dispatch(doSomething());
+}
 
   const handleAddToCart = () => {
     dispatch(addToCart({ ...product, quantity: 1 }));

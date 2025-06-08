@@ -20,23 +20,24 @@ const Sidebar = () => {
   const [price, setPrice] = useState(selectedPriceFromURL);
 
   // 🔄 Update URL when filters change
-  useEffect(() => {
-    const params = new URLSearchParams();
+useEffect(() => {
+  const params = new URLSearchParams();
 
-    if (selectedCategories.length > 0) {
-      params.set('category', selectedCategories.join(','));
-    }
+  if (selectedCategories.length > 0) {
+    params.set('category', selectedCategories.join(','));
+  }
 
-    if (selectedBrands.length > 0) {
-      params.set('brand', selectedBrands.join(','));
-    }
+  if (selectedBrands.length > 0) {
+    params.set('brand', selectedBrands.join(','));
+  }
 
-    if (price !== maxPrice) {
-      params.set('price', price.toString());
-    }
+  if (price !== maxPrice) {
+    params.set('price', price.toString());
+  }
 
-    router.replace(`/?${params.toString()}`);
-  }, [selectedCategories, selectedBrands, price]);
+  router.replace(`/?${params.toString()}`);
+}, [selectedCategories, selectedBrands, price, router]); 
+
 
   const toggleCategory = (cat: string) => {
     setSelectedCategories(prev =>
