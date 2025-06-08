@@ -2,14 +2,16 @@
 
 import products from '@/data/products';
 import Image from 'next/image';
-import { notFound } from 'next/navigation';
+import { notFound, useParams } from 'next/navigation';
 import { ShoppingCart } from 'lucide-react';
 import { addToCart } from '@/redux/features/cartSlice';
 import { useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
 
-export default function ProductPage({ params }: { params: { id: string } }) {
+export default function ProductPage() {
+  const params = useParams();
   const dispatch = useDispatch();
+
   const product = products.find((p) => p.id === params.id);
 
   if (!product) {
