@@ -6,7 +6,7 @@ import { notFound } from 'next/navigation';
 import { ShoppingCart } from 'lucide-react';
 import { addToCart } from '@/redux/features/cartSlice';
 import { useDispatch } from 'react-redux';
-import toast from 'react-hot-toast'; 
+import toast from 'react-hot-toast';
 
 interface ProductPageProps {
   params: {
@@ -15,18 +15,17 @@ interface ProductPageProps {
 }
 
 export default function ProductPage({ params }: ProductPageProps) {
+  const dispatch = useDispatch(); // ✅ call first
   const product = products.find((p) => p.id === params.id);
 
-  if (!product) return notFound();
-
- const dispatch = useDispatch();
-if (something) {
-  dispatch(doSomething());
-}
+  if (!product) {
+    notFound(); // ❗ call this AFTER hooks
+    return null; // fallback return (optional for type safety)
+  }
 
   const handleAddToCart = () => {
     dispatch(addToCart({ ...product, quantity: 1 }));
-    toast.success('Added to cart successfully!'); // ✅ show toast
+    toast.success('Added to cart successfully!');
   };
 
   return (
