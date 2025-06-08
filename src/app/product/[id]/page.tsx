@@ -8,13 +8,7 @@ import { addToCart } from '@/redux/features/cartSlice';
 import { useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
 
-type Props = {
-  params: {
-    id: string;
-  };
-};
-
-export default function ProductPage({ params }: Props) {
+export default function ProductPage({ params }: { params: { id: string } }) {
   const dispatch = useDispatch();
   const product = products.find((p) => p.id === params.id);
 
@@ -31,7 +25,6 @@ export default function ProductPage({ params }: Props) {
   return (
     <div className="px-4 py-6 max-w-6xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 bg-white shadow-lg p-6 rounded-lg">
-        {/* Image Section */}
         <div className="w-full">
           <Image
             src={product.image}
@@ -42,11 +35,9 @@ export default function ProductPage({ params }: Props) {
           />
         </div>
 
-        {/* Details Section */}
         <div className="flex flex-col gap-4">
           <h1 className="text-3xl font-bold text-gray-800">{product.title}</h1>
           <p className="text-blue-700 text-2xl font-semibold">${product.price}</p>
-
           <p className="text-gray-600">{product.description || 'No description available.'}</p>
 
           <div>
