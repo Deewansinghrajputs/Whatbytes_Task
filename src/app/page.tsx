@@ -1,5 +1,4 @@
 'use client';
-
 import { useSearchParams } from 'next/navigation';
 import Sidebar from '@/components/Sidebar';
 import ProductCard from '@/components/ProductCard';
