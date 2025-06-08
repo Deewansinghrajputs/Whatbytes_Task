@@ -2,14 +2,13 @@
 
 import { ShoppingCart, UserRound } from 'lucide-react';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
-import { Suspense } from 'react';
+import {  useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import SearchBar from './SearchBar';
 
 const Header = () => {
-  const pathname = usePathname();
+
   const router = useRouter(); // ✅ add this
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const totalCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
